@@ -1,6 +1,10 @@
 {
   "header": {
-    "title": "Portfolio"
+    "title": "Portfolio",
+    "nav": {
+      "home": "Home",
+      "skills": "Skills"
+    }
   },
   "intro": {
     "title": "Hello 👋",

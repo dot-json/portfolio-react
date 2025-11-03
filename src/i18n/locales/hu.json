@@ -1,6 +1,10 @@
 {
   "header": {
-    "title": "Portfólió"
+    "title": "Portfólió",
+    "nav": {
+      "home": "Főoldal",
+      "skills": "Skillek"
+    }
   },
   "intro": {
     "title": "Szia! 👋",

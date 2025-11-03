@@ -16,7 +16,7 @@ const LanguageToggle = () => {
     >
       <button
         className={cn(
-          "w-6 transition-opacity [clip-path:polygon(0_0,100%_0,56%_100%,0%_100%)]",
+          "w-5 transition-opacity [clip-path:polygon(0_0,100%_0,56%_100%,0%_100%)]",
           i18n.language !== "en" &&
             "cursor-pointer opacity-50 hover:opacity-75",
         )}
@@ -40,10 +40,10 @@ const LanguageToggle = () => {
           <path fill="#C8102E" d="M0 193v96h640v-96zM273 0v480h96V0z" />
         </svg>
       </button>
-      <div className="bg-foreground/80 absolute top-1/2 left-1/2 h-8 w-px -translate-x-1/2 -translate-y-1/2 rotate-30"></div>
+      <div className="bg-foreground/80 absolute top-1/2 left-1/2 h-7 w-px -translate-x-1/2 -translate-y-1/2 rotate-30"></div>
       <button
         className={cn(
-          "-ml-1 w-6 origin-[center_left] transition-opacity [clip-path:polygon(44%_0,100%_0,100%_100%,0%_100%)]",
+          "-ml-1 w-5 origin-[center_left] transition-opacity [clip-path:polygon(44%_0,100%_0,100%_100%,0%_100%)]",
           i18n.language !== "hu" &&
             "cursor-pointer opacity-50 hover:opacity-75",
         )}

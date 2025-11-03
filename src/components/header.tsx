@@ -4,8 +4,10 @@ import Button from "./ui/button";
 import LanguageToggle from "./ui/language-toggle";
 import { cn } from "../lib/utils";
 import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router";
 
 const Header = () => {
+  const location = useLocation();
   const { t } = useTranslation();
   const { isFirstLoad } = useReveal();
   const [open, setOpen] = useState<boolean>(false);
@@ -26,26 +28,36 @@ const Header = () => {
           <Button
             variant="nav"
             size="nav"
-            href="#home"
-            className="nav-item active opacity-0"
+            href="/"
+            className={cn(
+              "nav-item opacity-0",
+              location.pathname === "/" && "active",
+            )}
             style={{
               animation: "dropIn 1000ms ease forwards",
               animationDelay: isFirstLoad ? "calc(2200ms + 400ms)" : "400ms",
             }}
           >
-            <span className="-mr-[0.4em]">HOME</span>
+            <span className="-mr-[0.4em] uppercase">
+              {t("header.nav.home")}
+            </span>
           </Button>
           <Button
             variant="nav"
             size="nav"
-            href="#skills"
-            className="nav-item opacity-0"
+            href="/skills"
+            className={cn(
+              "nav-item opacity-0",
+              location.pathname === "/skills" && "active",
+            )}
             style={{
               animation: "dropIn 1000ms ease forwards",
               animationDelay: isFirstLoad ? "calc(2300ms + 600ms)" : "600ms",
             }}
           >
-            <span className="-mr-[0.4em]">SKILLS</span>
+            <span className="-mr-[0.4em] uppercase">
+              {t("header.nav.skills")}
+            </span>
           </Button>
           <span
             className="nav-anchor-line opacity-0"
@@ -97,18 +109,12 @@ const Header = () => {
           {Array.from({ length: 77 }, (_, i) => {
             const row = Math.floor(i / 7);
             const col = i % 7;
-            // Top-right corner is at (row=0, col=6)
-            // Calculate distance from top-right corner
             const distanceFromTopRight = Math.sqrt(
               row * row + (6 - col) * (6 - col),
             );
-            // Maximum distance (bottom-left corner)
             const maxDistance = Math.sqrt(10 * 10 + 6 * 6);
-            // Base delay per unit distance (in ms)
             const delayPerUnit = 40;
 
-            // When opening: delay increases with distance
-            // When closing: delay decreases with distance (furthest fade out first)
             const delay = open
               ? distanceFromTopRight * delayPerUnit
               : (maxDistance - distanceFromTopRight) * delayPerUnit;

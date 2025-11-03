@@ -35,6 +35,7 @@ const Intro = () => {
           variant="outline"
           aria-label={t("intro.resumeAria")}
           href="/doc/CV.pdf"
+          target="_blank"
         >
           <ScrollText />
           <span className="text-sm">{t("intro.resume")}</span>
@@ -44,6 +45,7 @@ const Intro = () => {
           size="icon"
           aria-label={t("intro.githubAria")}
           href="https://github.com/dot-json"
+          target="_blank"
         >
           <GitHub />
         </Button>
@@ -52,6 +54,7 @@ const Intro = () => {
           size="icon"
           aria-label={t("intro.linkedinAria")}
           href="https://www.linkedin.com/in/zsombor-gazdag/"
+          target="_blank"
         >
           <LinkedIn />
         </Button>

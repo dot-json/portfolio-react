@@ -1,6 +1,7 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
 import type { ReactNode } from "react";
+import { Link } from "react-router";
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-border focus-visible:ring-border/50 focus-visible:ring-[3px] cursor-pointer",
@@ -55,11 +56,41 @@ const button = ({
   ...props
 }: ButtonProps) => {
   if ("href" in props && props.href) {
-    const { href, ...anchorProps } = props as ButtonAsAnchor;
+    const { href, target, ...anchorProps } = props as ButtonAsAnchor;
+
+    // Check if it's an external link (has target or starts with http:// or https://)
+    const isExternal =
+      target !== undefined ||
+      href.startsWith("http://") ||
+      href.startsWith("https://");
+
+    // For internal routes, use React Router's Link component
+    if (!isExternal) {
+      return (
+        <Link
+          to={href}
+          className={cn(buttonVariants({ variant, size, className }))}
+          {...(anchorProps as Omit<
+            React.ComponentProps<typeof Link>,
+            "to" | "className" | "children"
+          >)}
+        >
+          {children}
+        </Link>
+      );
+    }
+
+    // For external links, use regular anchor tag
+    const finalTarget =
+      target ||
+      (href.startsWith("http://") || href.startsWith("https://")
+        ? "_blank"
+        : undefined);
     return (
       <a
         href={href}
-        target="_blank"
+        target={finalTarget}
+        rel={finalTarget === "_blank" ? "noopener noreferrer" : undefined}
         className={cn(buttonVariants({ variant, size, className }))}
         {...anchorProps}
       >

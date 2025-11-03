@@ -7,6 +7,8 @@
   --foreground-muted: oklch(0.7 0 0);
   --border: oklch(0.4 0 0);
   --border-muted: oklch(0.225 0 0);
+
+  --cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 @theme inline {

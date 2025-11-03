@@ -2,20 +2,19 @@ import BodyContent from "./components/body-content";
 import Header from "./components/header";
 import Noise from "./components/noise-overlay";
 import Reveal from "./components/reveal";
-import Education from "./sections/Education";
-import Intro from "./sections/Intro";
-import Work from "./sections/Work";
+import Home from "./routes/Home";
+import { Routes, Route } from "react-router";
+import Skills from "./routes/Skills";
 
 function App() {
   return (
     <Reveal>
       <Header />
       <BodyContent>
-        <div className="flex w-full flex-col gap-8 p-4 sm:p-6 lg:p-8">
-          <Intro />
-          <Work />
-          <Education />
-        </div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/skills" element={<Skills />} />
+        </Routes>
       </BodyContent>
       <Noise />
     </Reveal>
